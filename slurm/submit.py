@@ -100,8 +100,10 @@ def submit(
     if workdir is None:
         workdir = f"slurm_{job_name}_{uuid4()}"
 
-    if not exists(workdir):
-        makedirs(workdir)
+    workdir_log = join(workdir, "log")
+
+    if not exists(workdir_log):
+        makedirs(workdir_log)
 
     job_list_file = write_job_list(job_list, workdir)
     sl_file = write_sl(
