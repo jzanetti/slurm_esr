@@ -3,7 +3,7 @@ from os.path import exists, join
 from subprocess import run
 from uuid import uuid4
 
-from slurm import HEAD_INFO
+from slurm import HEAD_INFO, PRIORITY
 
 
 def write_job_list(job_list: list, workdir: str) -> str:
@@ -31,6 +31,7 @@ def write_sl(
     memory_per_node: int or None,
     python_path: str or None,
     conda_env: str or None,
+    job_priority: str,
     workdir: str,
 ) -> str:
     """Write slurm sl file
@@ -46,7 +47,12 @@ def write_sl(
     Returns:
         str: sl file path
     """
-    header = HEAD_INFO.format(job_name=job_name, partition=partition, workdir=workdir)
+    header = HEAD_INFO.format(
+        job_name=job_name,
+        partition=partition,
+        workdir=workdir,
+        nice_value=PRIORITY[job_priority],
+    )
 
     if memory_per_node is not None:
         header += f"#SBATCH --mem={memory_per_node}"
@@ -104,6 +110,7 @@ def submit(
         memory_per_node,
         python_path,
         conda_env,
+        job_priority,
         workdir,
     )
 
