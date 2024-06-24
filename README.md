@@ -2,6 +2,12 @@
 
 This is a streamlined interface designed to facilitate the submission of jobs via Slurm, tailored specifically for the ESR on-premise High Performance Computing (HPC) system.
 
+# Install
+The package can be installed via:
+```
+pip install slurm_esr
+```
+
 
 # Usage
 ### A simple example:
