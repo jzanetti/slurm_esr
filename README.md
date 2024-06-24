@@ -13,7 +13,7 @@ pip install slurm_esr
 ### A simple example:
 Submit a job with the name ``test``, and the list of commands of ``cmd1`` and ``cmd2``.
 ```
-from slurm_esr.slurm.submit import submit
+from slurm.submit import submit
 submit(job_name="test", job_list=["cmd1", "cmd2"])
 ```
 
@@ -23,7 +23,7 @@ The arguments of ``job_name`` and ``job_list`` are the minimum that we need to h
 
 
 ```
-from slurm_esr.slurm.submit import submit
+from slurm.submit import submit
 submit(
     job_name="test",
     job_list=["cmd1", "cmd2"],
